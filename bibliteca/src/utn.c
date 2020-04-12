@@ -97,4 +97,67 @@ int utn_getCaracter(char* pResultado, char* mensaje,char* mensajeError, char min
 	}
 	return retorno;
 }
+int factorial (int operador1,long int* pResultado)
+{
 
+	int retorno = -1;
+	long int factorial =1;
+
+	if(pResultado != NULL && operador1 >=0)
+	{
+		for (int i=operador1;i>0;i--)
+		{
+			factorial=factorial * i;
+		}
+		*pResultado = factorial;
+		retorno = 0;
+	}
+	return retorno;}
+
+int printArray(int* array, int limite)
+{
+	int retorno = -1;
+	if(array !=NULL && limite >=0)
+	{
+		for(int  i = 0; i< limite; i++)
+		{
+			printf("INDICE: %d , VALOR : %d\n",i,array[i]);
+
+		}
+	retorno = 0;
+	}
+
+
+ return retorno;
+}
+
+
+int descendenteArray(int* array,int limite)
+{
+  int retorno= -1;
+  int buffer;
+  int flagSwap;
+
+
+  if (array!=NULL && limite>=0)
+  {
+	  do
+	  {
+		  flagSwap = 0;
+		  for(int i=0;i<limite-1;i++)
+		  {
+			  if(array[i] < array[i+1])
+			  {
+				  buffer = array[i];
+				  array[i]=array[i+1];
+				  array[i+1] = buffer;
+				  flagSwap = 1;
+			  }
+		  }
+	  } while (flagSwap);
+
+	  retorno=0;
+  }
+
+  return retorno;
+}
