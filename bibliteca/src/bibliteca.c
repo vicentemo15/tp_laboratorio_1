@@ -13,20 +13,20 @@
 #include "utn.h"
 #define TAMANO 7
 
-
 int main(void)
 {
 
 	int edades[TAMANO] ={25,26,75,01,11,40,80};
 	printArray(edades,TAMANO);
-	//		if( descendenteArray(edades,TAMANO)= 0)
-	//		  {
-	//			printf()
-	//		  }
-	//
 
-
+	if( descendenteArray(edades,TAMANO)== 0)
+	{
+		printArray(edades,TAMANO);
+	}
+	else
+	{
+		printf("error");
+	}
 
 	return EXIT_SUCCESS;
 }
-

@@ -124,9 +124,10 @@ int printArray(int* array, int limite)
 			printf("INDICE: %d , VALOR : %d\n",i,array[i]);
 
 		}
-	retorno = 0;
-	}
 
+		printf ("\n\n");
+		retorno = 0;
+	}
 
  return retorno;
 }
