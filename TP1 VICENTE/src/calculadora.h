@@ -2,7 +2,7 @@
  * calculadora.h
  *
  *  Created on: 10 abr. 2020
- *      Author: seba
+ *      Author: Vicente Montilla
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +14,5 @@ int multiplicacion (int operador1, int operador2);
 int resta (int operador1, int operador2);
 int suma (int operador1, int operador2);
 int factorial (int operador1,long int* pResultado);
-
 
 #endif /* CALCULADORA_H_ */
