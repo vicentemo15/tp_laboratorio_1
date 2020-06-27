@@ -1,7 +1,15 @@
+/*
+ * LinkedList.c
+ *
+ *  Created on: 18 jun. 2020
+ *      Author: sebam
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
+#include "LinkedList.h"
+#include "Controller.h"
 
 
 static Node* getNode(LinkedList* this, int nodeIndex);
@@ -558,3 +566,95 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 
     return returnAux;
 }
+
+/** \brief Cambios en el pElmento.
+ * \param pList LinkedList* Puntero a la lista
+ *  param pFunc LinkedList* Puntero a la funcion
+ * \return LinkedList* Retorna  (-1) Error: si el puntero a la lista o funcion es NULL y
+                                (0) Si ok
+*/
+ int ll_map(LinkedList* this, int (*pFunc)(void*))
+ {
+
+	 int returnAux =-1;
+	 int i;
+	 void* pElement;
+	 if (this != NULL && pFunc!= NULL)
+	 {
+
+		 for (i=0;i<ll_len(this);i++)
+		 {
+			 pElement = ll_get(this,i);
+			  if (pFunc(pElement) < 0)
+			  {
+				  printf( "Error");
+			  }
+		 }
+		 returnAux = 0;
+	 }
+	 return returnAux;
+
+ }
+
+ /** \brief Obtiene una nueva lista.
+  * \param pList LinkedList* Puntero a la lista
+  *  param pFunc LinkedList* Puntero a la funcion
+  * \return LinkedList* Retorna  (listaFiltrada) Error: si el puntero a la lista o funcion es NULL y
+                                 (puntero a la nueva lista) Si ok
+ */
+ LinkedList* ll_filter(LinkedList* this, int (*pFuncion)(void*))
+ {
+ 	LinkedList* listaFiltrada = NULL;
+ 	int i;
+ 	void* element = NULL;
+
+ 	if ( this != NULL && pFuncion != NULL )
+ 	{
+ 		listaFiltrada = ll_newLinkedList();
+ 		for(i=0;i<ll_len(this);i++)
+ 		{
+ 			element = ll_get(this,i);
+ 			if( pFuncion(element)==0 )
+ 			{
+ 				ll_add(listaFiltrada,element);
+ 			}
+ 		}
+ 	}
+ 	return listaFiltrada;
+ }
+
+ /** \brief Obtiene una nueva lista.
+   * \param pList LinkedList* Puntero a la lista
+   *  param pFunc LinkedList* Puntero a la funcion
+   * \return LinkedList* Retorna  (listaFiltrada) Error: si el puntero a la lista o funcion es NULL y
+                                  (puntero a la nueva lista) Si ok
+  */
+  int ll_reduce(LinkedList* this, int (*pFuncion)(void*, int,int))
+  {
+	  int i;
+	  void* element = NULL;
+	  int valor = 0;
+
+	  if ( this != NULL && pFuncion != NULL )
+	  {
+		  for(i=0;i<ll_len(this);i++)
+		  {
+			  element = ll_get(this,i);
+			  valor = pFuncion(element,valor,i);
+		  }
+	  }
+	  return valor;
+  }
+
+  void* ll_reduceDos(LinkedList* this, int (*pFuncion)(LinkedList* this))
+  {
+	  void* element = NULL;
+	  int valor = 0;
+
+	  if ( this != NULL && pFuncion != NULL )
+	  {
+		  valor = pFuncion(this);
+		  element = ll_get(this,valor);
+	  }
+	  return element;
+  }
